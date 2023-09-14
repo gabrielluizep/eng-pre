@@ -13,12 +13,13 @@ X = zeros(1, N); %
 X(idx1) = 0; % Se for impar atribuir valor 0
 
 % Se for par atribuir valor pela distribuição exponencial com \lambda = 2
-lambda = 2; X(idx2) = exprnd(lambda, 1, sum(idx2));
+lambda = 2; beta = 1/lambda;
+X(idx2) = exprnd(beta, 1, sum(idx2));
 
 dx = 0.01; x = -1 : dx : 10;
 
 pdfX_sim = hist(X, x) / (N * dx);
-pdfX_teo = (1/2) * (1/lambda) * exp(-x/lambda) .* (x >= 0);
+pdfX_teo = (1/2) * lambda * exp(-lambda*x) .* (x >= 0);
 
 cdfX_sim = cumsum(pdfX_sim) * dx
 cdfX_teo = 1/2 + 1 - exp(-x/lambda) .* (x >= 0);

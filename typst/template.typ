@@ -6,6 +6,7 @@
   doc,
 ) = {
   set heading(numbering: "1.")
+  set math.equation(numbering: "(1)")
 
   set align(center)
   image("./ifsc-v.png", width: 100pt)
