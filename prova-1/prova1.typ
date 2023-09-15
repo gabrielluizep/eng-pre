@@ -46,9 +46,13 @@ $
 A partir disto temos que a PDF de $X$ é dada por:
 
 $
-f_X (x) &= 1/2 delta(x) + 1/2 2e^(-2x) \
-        &= 1/2 delta(x) + e^(-2x)
+f_X (x) &= 1/2 delta(x) + 1/2 2e^(-2x) u(x) \
+        &= 1/2 delta(x) + e^(-2x) u(x)
 $
+
+=== Esboço da PDF de $X$.
+
+#image("./assets/pdf.svg")
 
 == CDF
 
@@ -81,13 +85,16 @@ $
 
 Considerando a analise dos casos podemos resumir a função CDF de $X$ como:
 
-@cdf
 $
   F_X (x) = cases(
     1 - 1/2 e^(-2x) &", " x >= 0,
     0 &", caso contrário"
   )
-$ <cdf>
+$
+
+=== Esboço da CDF de $X$.
+#image("./assets/cdf.svg")
+
 
 == Média de $X$
 
@@ -95,19 +102,37 @@ A média de $X$ é dada por:
 
 $
   E[X] &= integral_(-infinity)^(infinity) x f_X (x) dif x \
-       &= integral_(-infinity)^(infinity) x (1/2 delta(x) + e^(-2x))dif x \
-       &= integral_(-infinity)^(infinity) 1/2 x delta(x) dif x + integral_(-infinity)^(infinity) x e^(-2x) dif x \
-       &= 1/2 integral_(-infinity)^(infinity) x delta(x) dif x + integral_(-infinity)^(infinity) x e^(-2x) dif x \
+       &= integral_(-infinity)^(infinity) x (1/2 delta(x) + e^(-2x)u(x))dif x \
+       &= integral_(-infinity)^(infinity) 1/2 x delta(x) dif x + integral_(-infinity)^(infinity) x e^(-2x)u(x) dif x \
+       &= 1/2 integral_(0^-)^(0^+) x dif x + integral_(0)^(infinity) x e^(-2x) dif x \
+       &= 1/2 [x^2/2]_(x=0^-)^(x=0^+) + [1/4 (-2e^(-2x) x - e^(-2x))]_(x=0)^(x=infinity)\
+       &= 1/2 dot.op 0 + 1/4 [(-2e^(-2 dot.op infinity) x - e^(-2 dot.op infinity)) - (-2e^(-2 dot.op 0) x - e^(-2 dot.op 0) dot.op 0)] \
+       &= 0 + 1/4 [(0 - 0) - (0 - 1)] \
+       &= 1/4 [1] \
+       &= 1/4 \
 $
 
-// TODO: terminar média de X
 
-== $Pr[-2<=x<=2]$
+== $Pr[-2<=X<=2]$
 
 A probabilidade de $X$ estar entre $-2$ e $2$ é dada pela aplicação da CDF de $X$ em $2$ subtraída da aplicação da CDF de $X$ em $-2$, temos então que:
 
 $
-  Pr[-2<=x<=2] &= F_X (2) - F_X (-2) \
+  Pr[-2<=X<=2] &= F_X (2) - F_X (-2) \
                &= 1 - 1/2 e^(-2 dot.op 2) - 0 \
                &= 1 - 1/2 e^(-4) 
 $
+
+= Resultados 
+
+Ao final do desenvolvimento obtivemos a partir do software de computação numérica Octave os seguintes resultados após desenvolvido o seguinte script:
+
+#raw(read("./5.m"),
+     lang: "matlab",
+     block: true)
+
+O código acima gera o seguinte gráfico como resultado:
+
+#image("./assets/simulacao.svg")
+
+Os valores de média e probabilidade de $X$ estar entre $-2$ e $2$ são simulados próximos ao valor teórico obtido no desenvolvimento.
