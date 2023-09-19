@@ -23,7 +23,7 @@ Considere uma variável aleatória X definida através do seguinte experimento p
 - Se o resultado for ímpar, então $X = 0$;
 - Se o resultado for par, então $X$ é sorteada de acordo com a distribuição exponencial com parâmetro $lambda = 2$.
 
-#set enum(numbering: "(a)")
+#set enum(numbering: "(a)") 
 
 + Determine e esboce a PDF de $X$
 + Determine e esboce a CDF de $X$
