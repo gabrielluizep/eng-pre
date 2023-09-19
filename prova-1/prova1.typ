@@ -1,6 +1,6 @@
-#import "../typst/template.typ": conf
+#import "../typst-ifsc/template-article.typ": article
 
-#show: doc => conf(
+#show: doc => article(
   title: [
     Prova 1
   ],
@@ -8,9 +8,7 @@
     Processos Estocásticos
   ],
   authors: (
-    (
-      name: "Gabriel Luiz Espindola Pedro",
-    ),
+    [Gabriel Luiz Espindola Pedro],
   ),
   date: [
     13 de Setembro de 2023
