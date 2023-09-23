@@ -1,4 +1,4 @@
-#import "../typst-ifsc/template-article.typ": article
+#import "../typst-ifsc/templates/article.typ": article
 
 #show: doc => article(
   title: "Prova 1",
@@ -117,7 +117,7 @@ $
 Ao final do desenvolvimento obtivemos a partir do software de computação
 numérica Octave os seguintes resultados após desenvolvido o seguinte script:
 
-#raw(read("./5.m"), lang: "matlab", block: true)
+#raw(read("./questao-5.m"), lang: "matlab", block: true)
 
 O código acima gera o seguinte gráfico como resultado:
 
