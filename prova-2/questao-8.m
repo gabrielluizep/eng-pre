@@ -72,7 +72,7 @@ xlabel('x'); ylabel('p_X(x)');
 
 figure;
 for i = 1 : length(y)
-  subplot(3, 3, i); hold on; grid on;
+  subplot(4, 2, i); hold on; grid on;
   bar(x, pmfX_condY_sim(i, :), 'y');
   stem(x, pmfX_condY_teo(i, :), 'b', 'LineWidth', 4);
   xlabel('x'); ylabel(sprintf('p_X(x | Y=%d)', y(i)));
@@ -85,7 +85,7 @@ xlabel('y'); ylabel('p_Y(y)');
 
 figure;
 for i = 1 : length(x)
-  subplot(3, 3, i); hold on; grid on;
+  subplot(4, 2, i); hold on; grid on;
   bar(y, pmfY_condX_sim(i, :), 'y');
   stem(y, pmfY_condX_teo(i, :), 'b', 'LineWidth', 4);
   xlabel('y'); ylabel(sprintf('p_Y(y | X=%d)', x(i)));
