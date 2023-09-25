@@ -81,5 +81,15 @@ $ X = U_1 + U_2 + U_3 \ Y = U_1 + U_2 - U_3 $
 
 == PMFs de $X$ dado que $Y = y$
 
-#image("./assets/condicionais-y.svg")
 #image("./assets/condicionais-x.svg")
+
+== PMFs de $Y$ dado que $X = x$
+
+#image("./assets/condicionais-y.svg")
+
+= Resultados
+
+Ao final do desenvolvimento obtivemos a partir do software de computação
+numérica Octave os seguintes resultados após desenvolvido o seguinte script:
+
+#raw(read("./questao-8.m"), lang: "matlab", block: true)
