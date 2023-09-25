@@ -81,5 +81,5 @@ $ X = U_1 + U_2 + U_3 \ Y = U_1 + U_2 - U_3 $
 
 == PMFs de $X$ dado que $Y = y$
 
-// #image("./assets/condicionais-y.svg")
-// #image("./assets/condicionais-x.svg")
+#image("./assets/condicionais-y.svg")
+#image("./assets/condicionais-x.svg")
