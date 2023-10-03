@@ -1,27 +1,30 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
 {
-  "name": "Ubuntu",
+  "name": "Python 3",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
-      "plugins": "",
-      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions",
-      "username": "root"
-    }
+    "ghcr.io/devcontainers/features/python:1": {},
+    "ghcr.io/oleksis/devcontainer-features/python-launcher:1": {}
   },
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  "postCreateCommand": "pip3 install --user -r requirements.txt",
+
   "customizations": {
     "vscode": {
       "extensions": [
-        "GitHub.copilot",
-        "toasty-technologies.octave",
-        "dracula-theme.theme-dracula",
-        "PKief.material-icon-theme",
-        "esbenp.prettier-vscode",
-        "mathematic.vscode-pdf",
-        "nvarner.typst-lsp"
-      ],
+		"GitHub.copilot",
+		"toasty-technologies.octave",
+		"dracula-theme.theme-dracula",
+		"PKief.material-icon-theme",
+		"esbenp.prettier-vscode",
+		"mathematic.vscode-pdf",
+		"nvarner.typst-lsp",
+		"ms-python.python",
+		"ms-toolsai.jupyter"
+	],
       "settings": {
         "workbench.colorTheme": "Dracula",
         "workbench.iconTheme": "material-icon-theme",
@@ -42,6 +45,7 @@
       }
     }
   }
+
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
