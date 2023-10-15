@@ -299,8 +299,6 @@ f_Y (y) &= -2/100 y + 1/5 \
 f_Y (y) &= 1/5 - y/50
 $
 
-=== Esboçando a PDF marginal de $Y$
-
 == Determinando a CDF marginal de $Y$
 
 $
@@ -310,8 +308,6 @@ F_Y (y) &= 1/5y - y^2/100 evaluated(u)_(0)^y \
 F_Y (y) &= 1/5y - y^2/100 - 1/5(0) + (0)^2/100 \
 F_Y (y) &= 1/5y - y^2/100 \
 $
-
-=== Esboçando a CDF marginal de $Y$
 
 == Determinando a PDF condicional de $Y$ dado $X = 5$
 
@@ -380,3 +376,7 @@ $
 &= 0 - 0 dot.op E[Y] \
 &= 0
 $
+
+= Plots gerados
+
+#image("./assets/plots.svg")

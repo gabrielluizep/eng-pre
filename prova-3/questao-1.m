@@ -1,6 +1,6 @@
 clear all; close all; clc;
 
-N = 10000;  % Número de realizações
+N = 100000;  % Número de realizações
 
 X = zeros(1, N);
 Y = zeros(1, N);
