@@ -271,7 +271,7 @@ Para calcular a PDF marginal de $Y$ devemos integrar a PDF conjunta em relação
 portanto utilizo a seguinte formula:
 
 $
-f_Y (y) &= integral_(-infinity)^(infinity) f_(X,Y)(x,y) dif x \
+f_Y (y) &= integral_(-oo)^(oo) f_(X,Y)(x,y) dif x \
 $
 
 Noto que existem três situações possíveis para a análise da PDF marginal de $Y$,
@@ -279,8 +279,8 @@ ela terá valor zero para quando o valor de $y$ for menor que $0$ ou maior que $
 e terá valor diferente de zero quando $0 < y < 10$. Portanto:
 
 #grid(columns: (1fr, 1fr), rows: 1, [
-  Para $-infinity < y < 0 "ou para" 10 < y < infinity $:
-  $ f_Y (y) &= integral_(-infinity)^(infinity) 0 dif x = 0 $
+  Para $-oo < y < 0 "ou para" 10 < y < oo $:
+  $ f_Y (y) &= integral_(-oo)^(oo) 0 dif x = 0 $
 ], [
   Para $0 < y < 10$:
 
@@ -302,8 +302,8 @@ $
 == Determinando a CDF marginal de $Y$
 
 $
-F_Y (y) &= integral_(-infinity)^y f_Y (u) dif u \
-F_Y (y) &= integral_(-infinity)^y (1/5 - u/50) dif u \
+F_Y (y) &= integral_(-oo)^y f_Y (u) dif u \
+F_Y (y) &= integral_(-oo)^y (1/5 - u/50) dif u \
 F_Y (y) &= 1/5y - y^2/100 evaluated(u)_(0)^y \
 F_Y (y) &= 1/5y - y^2/100 - 1/5(0) + (0)^2/100 \
 F_Y (y) &= 1/5y - y^2/100 \
@@ -312,7 +312,7 @@ $
 == Determinando a PDF condicional de $Y$ dado $X = 5$
 
 #grid(columns: (1fr, 1fr), rows: 2, row-gutter: 2em, align(center)[$
-  f_X (x) &= integral_(-infinity)^(infinity) f_(X,Y)(x,y) dif y \
+  f_X (x) &= integral_(-oo)^(oo) f_(X,Y)(x,y) dif y \
   &= integral_(0)^(-x+10) 1/100 dif y \
   &= 1/100 evaluated(y)_(0)^(-x+10) \
   &= 1/100 (-x+10 - 0) \
@@ -341,7 +341,7 @@ $
 
 Obs.: $f_(X,Y) (x,y) = -y/5$
 $
-E[X Y] &= integral_(-infinity)^(infinity)integral_(-infinity)^(infinity) x y f_(X,Y)(x,y) dif x dif y \
+E[X Y] &= integral_(-oo)^(oo)integral_(-oo)^(oo) x y f_(X,Y)(x,y) dif x dif y \
 &= integral_(0)^(10)integral_(y-10)^(-y-10) x y (-y/5) dif x dif y \
 &= integral_(0)^(10)integral_(y-10)^(-y-10) (-x y^2)/5 dif x dif y \
 &= -1/5 integral_0^10 y^2 integral_(y-10)^(-y-10) x dif x dif y \
@@ -359,7 +359,7 @@ $
 
 Obs.: $f_X (x) = 1/10$
 $
-E[X] &= integral_(-infinity)^(infinity) x f_X (x) dif x \
+E[X] &= integral_(-oo)^(oo) x f_X (x) dif x \
 &= integral_(-10)^(10) x (1/10) dif x \
 &= 1/10 integral_(-10)^(10) x dif x \
 &= 1/10 dot.op evaluated(x^2/2)_(-10)^(10) \
