@@ -216,7 +216,7 @@ $
 va(mu)_va(Z) = A dot.op va(mu)_va(Y) + va(b)
 $
 
-Onde $A$ é a matriz dos componentes de $va(Y_i)$ que compõem $va(Z_i)$
+Portanto:
 
 $
 va(mu)_va(Z) &= mat(1,1,0;0,1,1;1,0,1) dot.op vec(0,0,0) + vec(0,0,0)
