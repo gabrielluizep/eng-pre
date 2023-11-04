@@ -28,4 +28,4 @@ muZ_teo = [0; 0; 0]
 
 % Covariância de Z
 covZ_sim = cov([Z1' Z2' Z3'])
-covZ_teo = [0 0 0; 0 0 0; 0 0 0]
+covZ_teo = [2 1 1; 1 2 1; 1 1 2]
