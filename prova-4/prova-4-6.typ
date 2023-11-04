@@ -116,40 +116,124 @@ $
 A matriz covariância é definida por:
 
 $
-va(C)_va(Y) = E[(va(Y) - va(mu)_va(Y))(va(Y) - va(mu)_va(Y))^TT]
+va(C)_va(Y) = mat(delim:"[",
+                  "var"[Y_1], "cov"[Y_1, Y_2], "cov"[Y_1,Y_3];
+                  "cov"[Y_2, Y_1], "var"[Y_2], "cov"[Y_2,Y_3];  
+                  "cov"[Y_3, Y_1], "cov"[Y_3, Y_2], "var"[Y_3])
 $
 
-Como já calculado anteriormente a média de $va(Y)$ é igual a 0 e portanto:
+Sendo a covariância definida por:
 
 $
-va(C)_va(Y) &= E[va(Y) dot.op va(Y)^TT]\
-&= E[va(Y)] dot.op E[va(Y)^TT]\
-&= vecrow(0, 0, 0)^TT dot.op vecrow(0, 0, 0)\
-&= zmat(3)
+"cov"[X, Y] = E[(X - mu_x)(Y - mu_Y))]
 $
 
+E sabendo que:
+
+$
+"cov"[X, Y] = "cov"[Y, X]
+$
+
+Podemos então calcular as covariâncias
+
+$
+"cov"[Y_1, Y_2] &= E[(Y_1 - E[Y_1])(Y_2 - E[Y_2])] \
+&= E[Y_1 Y_2] \
+&= E[X_1 X_1 X_2] \
+&= E[X_1] E[X_1] E[X_2] \
+&= 0
+$
+
+$
+"cov"[Y_1, Y_3] &= E[(Y_1 - E[Y_1])(Y_3 - E[Y_3])] \
+&= E[Y_1 Y_3] \
+&= E[X_1 X_1 X_2 X_3] \
+&= E[X_1] E[X_1] E[X_2] E[X_3] \
+&= 0
+$
+
+$
+"cov"[Y_2, Y_3] &= E[(Y_2 - E[Y_2])(Y_3 - E[Y_3])] \
+&= E[Y_2 Y_3] \
+&= E[X_1 X_1 X_2 X_2 X_3] \
+&= E[X_1] E[X_1] E[X_2] E[X_2] E[X_3] \
+&= 0
+$
+
+A variância definida por:
+
+$
+"var"[X] = E[(X - mu_X)^2]
+$
+
+Com isso podemos calcular as variâncias:
+
+$
+"var"[Y_1] &= E[(Y_1 - E[Y_1])^2] \
+&= E[Y_1^2] \
+&= E[X_1^2] \
+&= sum_(x in X) x^2 P(X = x) \
+&= 1^2 dot.op P(X = 1) + (-1)^2 dot.op P(X = -1) \
+&= 1 dot.op 1/2 + 1 dot.op 1/2 \
+&= 1
+$
+
+$
+"var"[Y_2] &= E[(Y_2 - E[Y_2])^2] \
+&= E[Y_2^2] \
+&= E[X_1^2 X_2^2] \
+&= E[X_1^2] E[X_2^2] \
+&= sum_(x in X) x^2 P(X = x) \
+&= 1^2 dot.op P(X = 1) + (-1)^2 dot.op P(X = -1) \
+&= 1 dot.op 1/2 + 1 dot.op 1/2 \
+&= 1
+$
+
+$
+"var"[Y_3] &= E[(Y_3 - E[Y_3])^2] \
+&= E[Y_3^2] \
+&= E[X_1^2 X_2^2 X_3^2] \
+&= E[X_1^2] E[X_2^2] E[X_3^2] \
+&= sum_(x in X) x^2 P(X = x) \
+&= 1^2 dot.op P(X = 1) + (-1)^2 dot.op P(X = -1) \
+&= 1 dot.op 1/2 + 1 dot.op 1/2 \
+&= 1
+$
+
+Portanto a matriz covariância de $va(Y)$ é:
+
+$
+va(C)_va(Y) = dmat(1, 1, 1, delim:"[", fill: 0)
+$
+
+#set math.mat(delim:"[")
+#set math.vec(delim:"[")
 == Vetor média de $va(Z)$
 
-Uma vez realizado todo o cálculo de média de $va(Y)$, podemos então calcular a
-média de $va(Z)$, aplicando as propriedades da média obtemos:
+O vetor média é definido por:
 
 $
-va(mu)_va(Z) &= E[va(Z)]\
-&= E[vecrow(Z_1, Z_2, Z_3)^TT]\
-&= vecrow(E[Z_1], E[Z_2], E[Z_3])^TT\
-&= vecrow(E[Y_1 + Y_2], E[Y_2 + Y_3], E[Y_3 + Y_1])^TT\
-&= vecrow(E[Y_1] + E[Y_2], E[Y_2] + E[Y_3], E[Y_3] + E[Y_1])^TT\
-&= vecrow(0, 0, 0)^TT\
+va(mu)_va(Z) = A dot.op va(mu)_va(Y) + va(b)
 $
+
+Onde $A$ é a matriz dos componentes de $va(Y_i)$ que compõem $va(Z_i)$
+
+$
+va(mu)_va(Z) &= mat(1,1,0;0,1,1;1,0,1) dot.op vec(0,0,0) + vec(0,0,0)
+&= vec(0,0,0)
+$
+
 
 == Matriz covariância de $va(Z)$
 
-Com os valores de média em mãos podemos obter a covariância de $va(Z)$:
+A matriz covariância é definida por:
 
 $
-va(C)_va(Z) &= E[(va(Z) - va(mu)_va(Z))(va(Z) - va(mu)_va(Z))^TT]\
-&= E[va(Z) dot.op va(Z)^TT]\
-&= E[va(Z)] dot.op E[va(Z)^TT]\
-&= vecrow(0, 0, 0)^TT dot.op vecrow(0, 0, 0)\
-&= zmat(3)
+C_va(Z) = A dot.op C_va(Y) dot.op A^TT
+$
+
+Portanto:
+
+$
+C_va(Z) = mat(1,1,0;0,1,1;1,0,1) dot.op dmat(1, 1, 1, delim:"[", fill: 0) dot.op mat(1,0,1;1,1,0;0,1,1) = dmat(2, 2, 2, delim:"[", fill: 1)
 $

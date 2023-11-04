@@ -16,7 +16,7 @@ muY_teo = [0; 0; 0]
 
 % Covariância de Y
 covY_sim = cov([Y1' Y2' Y3'])
-covY_teo = [0 0 0; 0 0 0; 0 0 0]
+covY_teo = [1 0 0; 0 1 0; 0 0 1]
 
 Z1 = Y1 + Y2;
 Z2 = Y2 + Y3; 
