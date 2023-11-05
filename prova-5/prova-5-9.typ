@@ -62,7 +62,7 @@ Determine:
   + $Pr[2<= X_1 <= 3]$;
   + $Pr[2<= X_1 <= 3 | X_2 = 2]$;
   + $Pr[2<= X_1 <= 3 | X_2 = 2 and X_3 = 3 ]$;
-  + $Pr[X_1 - X_3 > 4]$.
+  + $Pr[X_2 + X_4 > 4]$.
 ]
 
 #pagebreak()
@@ -100,21 +100,18 @@ A partir da análise acima podemos concluir que:
 #grid(
   columns: (1fr, 1fr),
   row-gutter: 1em,
-  [$ X_1 tilde N(0,1) $],
-  [$ X_2 tilde N(0,2) $],
-  [$ X_3 tilde N(0,3) $],
-  [$ X_4 tilde N(0,4) $],
+  [$ X_1 tilde N(0,sqrt(1)) $],
+  [$ X_2 tilde N(0,sqrt(2)) $],
+  [$ X_3 tilde N(0,sqrt(3)) $],
+  [$ X_4 tilde N(0,sqrt(4)) $],
 )
 
 Sendo a distribuição gaussiana representada pela notação:
 
-#box(
-  )[
-  #align(
-    horizon,
-  )[
-    #grid(columns: (1fr, 1fr), [$ X tilde N(mu, sigma^2) $], [$ &mu = "média"\
-      &sigma^2 = "variância" $])
+#box()[
+  #align(horizon)[
+    #grid(columns: (1fr, 1fr), [$ X tilde N(mu, sigma) $], [$ &mu = "média"\
+      &sigma = "desvio padrão" $])
   ]
 ]
 
@@ -182,7 +179,7 @@ variáveis $X_1$ e trazer as informações de média e covariância relacionadas
     #grid(
       columns: (1fr, 1fr, 1fr),
       row-gutter: 2em,
-      [$ va(x) = vec(X_1, X_2) $],
+      [$ va(X) = vec(X_1, X_2) $],
       [$ va(mu) = vec(0, 0) $],
       [$ C = mat(1, 1;1, 2) $],
       [$ det(C) =(1 dot.op 2)-(1 dot.op 1) = 1 $],
@@ -201,27 +198,125 @@ $
 $
 f_(X_1, X_2) (X_1, 3) &=
 1/sqrt((2pi)^2 dot.op [(1 dot.op 2)-(1 dot.op 1)]) exp(
-  -1/2 (mat(X_1, 2) - mat(0, 0)) mat(1, 1;1, 2) (vec(X_1, 2) - vec(0, 0))
+  -1/2 (mat(X_1, 2) - mat(0, 0)) mat(2, -1;-1, 1) (vec(X_1, 2) - vec(0, 0))
 )\
 
 &= 1/sqrt((2pi)^2 dot.op 1) exp(-1/2 mat(X_1, 2) mat(2, -1;-1, 1) vec(X_1, 2))\
 
-&= 1/(2pi) exp(-1/2 (2X_1^2 - 4X_1 + 4))\
+&= 1/sqrt((2pi)^2) exp(-1/2 (2X_1^2 - 4X_1 + 4))\
 
-&= 1/(2pi) exp(-X_1^2 + 2X_1 - 2)
+&= 1/sqrt((2pi)^2) exp(-X_1^2 + 2X_1 - 2)
 $
 
 $
 f_X_2 (2) &= 1/sqrt(2pi sigma^2) exp(-1/2 ((2-mu)/sigma)^2)\
-&= 1/sqrt(4pi) exp(-1/2 ((2-0)/sqrt(2))^2)\
-&= 1/(2sqrt(pi)) exp(-1/2 (2/sqrt(2))^2)\
-&= 1/(2sqrt(pi)) exp(-1/2 dot.op 4/2)\
-&= 1/(2sqrt(pi)) exp(-1)\
+&= 1/sqrt(2 dot.op pi dot.op 2) exp(-1/2 ((2-0)/sqrt(2))^2)\
+&= 1/sqrt(2 dot.op pi dot.op 2) exp(-1/2 (2/sqrt(2))^2)\
+&= 1/sqrt(2 dot.op pi dot.op 2) exp(-1/2 dot.op 4/2)\
+&= 1/sqrt(2 dot.op pi dot.op 2) exp(-1)\
 $
 
 $
-f_X_1 (x_1 | x_2 = 2) &= (1/(2pi) exp(-X_1^2 + 2X_1 - 2))/(1/(2sqrt(pi)) exp(-1))\
-&= 1/(2pi) dot.op (2sqrt(pi))/1 exp(-X_1^2 + 2X_1 - 2 + 1)\
-&= sqrt(pi)/pi exp(-X_1^2 + 2X_1 - 1)\
+f_X_1 (x_1 | x_2 = 2) &= (1/sqrt((2pi)^2) exp(-X_1^2 + 2X_1 - 2))/(1/(2sqrt(pi)) exp(-1))\
+&= 1/sqrt((2pi)^2) dot.op sqrt(2 dot.op pi dot.op 2)/1 exp(-X_1^2 + 2X_1 - 2 + 1)\
+&= sqrt((cancel(2pi) dot.op 2)/(cancel(2pi) dot.op 2pi))exp(-X_1^2 + 2X_1 - 1)\
+&= 1/sqrt(2pi dot.op 1/2) exp(-1(X_1^2 - 2X_1 + 1))\
+&= 1/sqrt(2pi dot.op 1/2) exp(-(X_1 - 1)^2)\
+&= 1/sqrt(2pi dot.op 1/2) exp(-(X_1 - 1)^2/(2 dot.op 1/2 ))\
+
+&=>f_X_1 (x_1 | x_2 = 2) tilde N(1, 1/2)
 $
 
+Observamos que a distribuição condicional $f_X_1 (x_1 | x_2 = 2)$ é uma
+gaussiana com $mu = 1$ e $sigma = sqrt(1/2)$, com essa informação podemos
+calcular a distribuição acumulada para essa gaussiana:
+
+$
+Phi((3-1)/sqrt(1/2)) - Phi((2-1)/sqrt(1/2)) &= Phi(2.8284) - Phi(1.4142)\
+&= 0.9976 - 0.9214\
+&= 0.0762\
+$
+
+Ou seja a probabilidade de $X_1$ estar entre 2 e 3 dado que $X_2 = 2$ é de
+7.62%.
+
+#pagebreak()
+
+= Calculando $Pr[2 <= X_1 <= 3 | X_2 = 2 and X_3 = 3]$
+
+Analisando a matriz covariância @matriz-covariancia-x dada pelo enunciado
+observamos que existe uma dependência entre as variáveis $X_1$ e $X_2$ porém não
+existe dependência entre as variáveis $X_1$ e $X_3$, podemos considerar apenas $X_2$ para
+o calculo da probabilidade:
+
+$
+Pr[2 <= X_1 <= 3 | X_2 = 2 and X_3 = 3] &= Pr[2 <= X_1 <= 3 | X_2 = 2]\
+$
+
+Verificamos que a probabilidade condicional pedida é igual a probabilidade
+condicional calculada anteriormente, ou seja a a probabilidade $X_1$ estar entre
+2 e 3 dado que $X_2 = 2$ e $X_3 = 3$ é de 7.62%.
+
+= Calculando $Pr[X_2 + X_4 > 4]$
+
+Criamos um novo vetor aleatório $va(Y) = mat(X_2, X_4)^TT$ para podermos
+trabalhar com as transformações lineares afins.
+
+#box()[
+  #align(center)[
+    #grid(
+      columns: (1fr, 1fr, 1fr),
+      row-gutter: 2em,
+      [$ va(Y) = vec(X_2, X_4) $],
+      [$ va(mu)_va(Y) = vec(0, 0) $],
+      [$ C_va(Y) = mat(2, 0;0, 4) $],
+    )
+  ]
+]
+
+Sendo uma transformação linear afim de, precisamos do da matriz de coeficientes $A$,
+que representa a constante que está multiplicando cada componente da equação
+linear ($1 dot.op X_2 + 1 dot.op X_4$), e o vetor de constantes $va(b)$, que
+representa a constante que está somando a equação linear que no caso é um vetor
+nulo.
+
+Portanto:
+
+#box()[
+  #align(center)[
+    #grid(
+      columns: (1fr, 1fr),
+      row-gutter: 2em,
+      [$A = mat(1, 1)$],
+      [$va(b) = vec(0, 0)$],
+    )
+  ]
+]
+
+Então utilizamos as seguintes formulas para calcular a média e a variância da
+distribuição de $va(Y)$:
+
+#box()[
+  #align(center)[
+    #grid(columns: (1fr, 1fr), row-gutter: 2em, [$
+      mu_Y &= A dot.op mu_va(Y)\
+      &= mat(1, 1) dot.op vec(0, 0)\
+      &= 0
+      $], [$
+      sigma^2 &= A C_va(Y) A^TT \
+      &= mat(1, 1) mat(2, 0;0, 4) vec(1, 1)\
+      &= 6
+      $])
+  ]
+]
+
+Portanto $va(Y) tilde N(0, sqrt(6))$, para calcularmos a probabilidade pedida
+utilizamos a função cumulativa:
+
+$
+1 - Phi((4-0)/sqrt(6)) &= 1 - Phi(1.633)\
+&= 1 - 0.94876\
+&= 0.0512\
+$
+
+Ou seja, a probabilidade de $X_2 + X_4$ ser maior que 4 é de 5.12%.
