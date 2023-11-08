@@ -8,23 +8,21 @@
     "ghcr.io/devcontainers/features/python:1": {},
     "ghcr.io/oleksis/devcontainer-features/python-launcher:1": {}
   },
-
   // Use 'postCreateCommand' to run commands after the container is created.
   "postCreateCommand": "pip3 install --user -r requirements.txt",
-
   "customizations": {
     "vscode": {
       "extensions": [
-		"GitHub.copilot",
-		"toasty-technologies.octave",
-		"dracula-theme.theme-dracula",
-		"PKief.material-icon-theme",
-		"esbenp.prettier-vscode",
-		"mathematic.vscode-pdf",
-		"nvarner.typst-lsp",
-		"ms-python.python",
-		"ms-toolsai.jupyter"
-	],
+        "GitHub.copilot",
+        "toasty-technologies.octave",
+        "dracula-theme.theme-dracula",
+        "PKief.material-icon-theme",
+        "esbenp.prettier-vscode",
+        "mathematic.vscode-pdf",
+        "nvarner.typst-lsp",
+        "ms-python.python",
+        "ms-toolsai.jupyter"
+      ],
       "settings": {
         "workbench.colorTheme": "Dracula",
         "workbench.iconTheme": "material-icon-theme",
@@ -36,8 +34,6 @@
         "editor.bracketPairColorization.enabled": true,
         "editor.guides.bracketPairs": "active",
         "editor.formatOnSave": true,
-        "editor.defaultFormatter": "esbenp.prettier-vscode",
-
         "github.copilot.enable": {
           "*": true
         },
@@ -45,7 +41,6 @@
       }
     }
   }
-
   // Features to add to the dev container. More info: https://containers.dev/features.
   // "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
