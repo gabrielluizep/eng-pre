@@ -1,7 +1,7 @@
 #import "../typst-ifsc/templates/article.typ": article
 
 #show: doc => article(
-  title: "Prova 5",
+  title: "Prova 6",
   subtitle: "Processos Estocásticos",
   authors: ("Gabriel Luiz Espindola Pedro",),
   date: "4 de Novembro de 2023",
